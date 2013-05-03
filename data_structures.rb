@@ -47,9 +47,9 @@ def time_computation description, color=:black, &computation
 end
 
 def compare_times description, values
-  puts "##############################################"
+  puts "#######################################################################"
   puts description.upcase
-  puts "##############################################"
+  puts "#######################################################################"
 
   value = values.to_a.sample
 
@@ -61,10 +61,16 @@ def compare_times description, values
   time_computation("Searching in BST for #{value}", :green){bst.search(value)}
 end
 
-max = 2500
+def compare_with_size max
+  values = generate_random_key_values(max)
+  compare_times("comparing with random insert with #{values.size} values", values)
 
-values = generate_random_key_values(max)
-compare_times("comparing with random insert with #{values.size} values", values)
+  values = (0...values.size).to_a
+  compare_times("comparing with sorted insert with #{values.size} values", values)
+end
 
-values = (0...values.size).to_a
-compare_times("comparing with sorted insert with #{values.size} values", values)
+compare_with_size(10)
+puts "\n\n\n"
+compare_with_size(200)
+puts "\n\n\n"
+compare_with_size(3500)
