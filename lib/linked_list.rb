@@ -1,25 +1,24 @@
 class LinkedList
-  attr_reader :key, :value, :next
+  attr_reader :value, :next
 
-  def initialize(key, value)
-    @key = key
+  def initialize(value)
     @value = value
   end
 
-  def add(insert_key, insert_value)
+  def add(insert_value)
     if @next.nil?
-      @next = LinkedList.new(insert_key, insert_value)
+      @next = LinkedList.new(insert_value)
     else
-      @next.add(insert_key, insert_value)
+      @next.add(insert_value)
     end
   end
 
-  def find(find_key)
+  def find(node_value)
     node = nil
-    if key == find_key
+    if value == node_value
       node = self
     else
-      node = @next.find(find_key) unless @next.nil?
+      node = @next.find(node_value) unless @next.nil?
     end
     node
   end

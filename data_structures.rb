@@ -4,7 +4,7 @@ require 'set'
 require_relative './lib/binary_search_tree'
 require_relative './lib/linked_list'
 
-def generate_random_key_values(size)
+def generate_random_values(size)
   set = Set.new
   size.times do
     set << rand(10000000)
@@ -16,9 +16,9 @@ def build_bst set
   bst = nil
   set.each do |value|
     if bst.nil?
-      bst = BST.new(value, value)
+      bst = BST.new(value)
     else
-      bst.insert(value, value)
+      bst.insert(value)
     end
   end
   bst
@@ -28,9 +28,9 @@ def build_linked_list set
   list = nil
   set.each do |value|
     if list.nil?
-      list = LinkedList.new(value, value)
+      list = LinkedList.new(value)
     else
-      list.add(value, value)
+      list.add(value)
     end
   end
   list
@@ -62,7 +62,7 @@ def compare_times description, values
 end
 
 def compare_with_size max
-  values = generate_random_key_values(max)
+  values = generate_random_values(max)
   compare_times("comparing with random insert with #{values.size} values", values)
 
   values = (0...values.size).to_a

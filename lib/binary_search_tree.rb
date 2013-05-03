@@ -1,27 +1,26 @@
 class BST
-  attr_reader :value, :key, :left, :right
+  attr_reader :value, :left, :right
 
-  def initialize(key, value)
+  def initialize(value)
     @value = value
-    @key = key
   end
 
-  def insert(insert_key, insert_value)
-    if insert_key > key
-      insert_into(:right, insert_key, insert_value)
-    elsif insert_key < key
-      insert_into(:left, insert_key, insert_value)
+  def insert(insert_value)
+    if insert_value > value
+      insert_into(:right, insert_value)
+    elsif insert_value < value
+      insert_into(:left, insert_value)
     end
   end
 
-  def search(search_key)
+  def search(search_value)
     found_node = nil
-    if key == search_key
+    if search_value == value
       found_node = self
-    elsif search_key > key
-      found_node = right.search(search_key) unless right.nil?
+    elsif search_value > value
+      found_node = right.search(search_value) unless right.nil?
     else
-      found_node = left.search(search_key) unless left.nil?
+      found_node = left.search(search_value) unless left.nil?
     end
 
     found_node
@@ -29,11 +28,11 @@ class BST
 
   private
 
-  def insert_into(name, child_key, child_value)
+  def insert_into(name, child_value)
     if send(name).nil?
-      send("#{name}=", BST.new(child_key, child_value))
+      send("#{name}=", BST.new(child_value))
     else
-      send(name).insert(child_key, child_value)
+      send(name).insert(child_value)
     end
   end
 
