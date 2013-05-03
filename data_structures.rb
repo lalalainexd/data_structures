@@ -67,10 +67,9 @@ def compare_with_size max
 
   values = (0...values.size).to_a
   compare_times("comparing with sorted insert with #{values.size} values", values)
+puts "\n\n"
 end
 
 compare_with_size(10)
-puts "\n\n"
 compare_with_size(100)
-puts "\n\n"
 compare_with_size(1000)
