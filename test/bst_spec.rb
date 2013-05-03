@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative './binary_search_tree'
+require_relative '../lib/binary_search_tree'
 
 describe BST do
   let(:bst) { BST.new("key", "value") }
