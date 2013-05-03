@@ -41,15 +41,15 @@ def time_computation description, color=:black, &computation
   t1 = Time.now
   result = computation.yield
   t2 = Time.now
-  print " time: #{t2 - t1} sec\n"
-  STDOUT.flush
+  delta = t2 - t1
+  printf(" %3.6f sec\n", delta)
   result
 end
 
 def compare_times description, values
-  puts "#######################################################################"
+  puts "###########################################################"
   puts description.upcase
-  puts "#######################################################################"
+  puts "###########################################################"
 
   value = values.to_a.sample
 
@@ -70,7 +70,7 @@ def compare_with_size max
 end
 
 compare_with_size(10)
-puts "\n\n\n"
-compare_with_size(200)
-puts "\n\n\n"
-compare_with_size(3500)
+puts "\n\n"
+compare_with_size(100)
+puts "\n\n"
+compare_with_size(1000)
